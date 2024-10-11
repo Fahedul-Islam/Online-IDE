@@ -1,0 +1,125 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+nav .nav-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+nav .nav-button:hover {
+    background-color: #003f7f;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.editor-container {
+    margin-top: 20px;
+}
+
+.editor-container textarea {
+    width: 100%;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.input-container textarea {
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    background-color: #e9ecef;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.toolbar select {
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-btn button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn button:hover {
+    background-color: #218838;
+}
+/* Add these styles to your editor.css or create a new CSS file */
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+pre {
+    margin-bottom: 0;
+}
+
+code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9rem;
+}
+
+.modal-dialog-scrollable .modal-body {
+    overflow-y: auto;
+}

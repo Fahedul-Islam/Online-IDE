@@ -1,0 +1,69 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Recent Codes</h2>
+    
+    {% if recent_codes %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for code in recent_codes %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ code.language }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ code.created_at|date:"F d, Y H:i" }}</h6>
+                            <p class="card-text">{{ code.code|truncatechars:100 }}</p>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#codeModal{{ code.id }}">
+                                View Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="codeModal{{ code.id }}" tabindex="-1" aria-labelledby="codeModalLabel{{ code.id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header bg-light">
+                                <h5 class="modal-title" id="codeModalLabel{{ code.id }}">
+                                    <span class="badge bg-primary">{{ code.language }}</span>
+                                    <small class="text-muted ms-2">{{ code.created_at|date:"F d, Y H:i" }}</small>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <pre><code class="language-{{ code.language|lower }} bg-light p-3 rounded">{{ code.code }}</code></pre>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="copyCode(this)" data-code="{{ code.code }}">Copy Code</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            No recent codes found. Start coding to see your history!
+        </div>
+    {% endif %}
+</div>
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script>
+    hljs.highlightAll();
+
+    function copyCode(button) {
+        const code = button.getAttribute('data-code');
+        navigator.clipboard.writeText(code).then(() => {
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = 'Copy Code';
+            }, 2000);
+        });
+    }
+</script>
+{% endblock %}
+{% endblock %}
