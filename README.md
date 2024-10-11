@@ -14,8 +14,8 @@ Welcome to the Online IDE Project! This web application allows users to write, c
 
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, JavaScript
-- **Database**: SQLite (or your preferred database)
-- **Code Execution**: [Your chosen method for executing code, e.g., using a Docker container or an API]
+- **Database**: Django's default SQLite database
+- **Code Execution**: [using a Docker container]
 
 ## Getting Started
 
@@ -25,12 +25,11 @@ To set up the project locally, follow these steps:
 
 - Python 3.x
 - Django
-- Additional libraries as specified in `requirements.txt`
 
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/online-ide.git
-   cd online-ide
+   [https://github.com/Fahedul-Islam/Online-IDE.git]
+   cd Online-IDE
