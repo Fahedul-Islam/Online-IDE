@@ -9,12 +9,18 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Update ALLOWED_HOSTS
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '127.0.0.1 localhost [::1]').split(' ')
+
+# Update STATIC_ROOT
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -24,9 +30,6 @@ SECRET_KEY = 'django-insecure-!y0$4$m(u=_wv!imzfdg&89kx@*1&3e^s8)v^=zp#0#f&-^%#4
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     # 'home.middleware.LoginRequiredMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,24 +124,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+CSRF_COOKIE_SECURE = False  # Use True for HTTPS in production
+SESSION_COOKIE_SECURE = False  # Use True for HTTPS in production
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Login and redirect settings
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'fahedul.twtr@gmail.com'
+EMAIL_HOST_PASSWORD = 'oapr oegv rawv brsh'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# settings.py
-
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-CSRF_COOKIE_SECURE = False  # Use True for HTTPS in production
-SESSION_COOKIE_SECURE = False  # Use True for HTTPS in production
-CRISPY_TEMPLATE_PACK= 'bootstrap4'
-
-LOGIN_REDIRECT_URL='home'
-LOGIN_URL = 'login'  
-
-
-
-

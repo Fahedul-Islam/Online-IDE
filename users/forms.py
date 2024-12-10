@@ -9,3 +9,5 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+class OTPVerificationForm(forms.Form):
+    otp = forms.CharField(max_length=6, required=True, label='Enter OTP')
